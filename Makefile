@@ -12,8 +12,8 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 
-.PHONY: build build-controller build-importer build-cloner build-apiserver build-uploadproxy build-uploadserver build-functest-image-init build-functest-image-http build-functest \
-		docker docker-controller docker-cloner docker-importer docker-apiserver docker-uploadproxy docker-uploadserver docker-functest-image-init docker-functest-image-http\
+.PHONY: build build-controller build-operator build-importer build-cloner build-apiserver build-uploadproxy build-uploadserver build-functest-image-init build-functest-image-http build-functest \
+		docker docker-controller docker-operator docker-cloner docker-importer docker-apiserver docker-uploadproxy docker-uploadserver docker-functest-image-init docker-functest-image-http\
 		cluster-sync cluster-sync-controller cluster-sync-cloner cluster-sync-importer cluster-sync-apiserver cluster-sync-uploadproxy cluster-sync-uploadserver \
 		test test-functional test-unit test-lint \
 		publish \
@@ -49,6 +49,8 @@ build:
 
 build-controller: WHAT = cmd/cdi-controller
 build-controller: build
+build-operator: WHAT = cmd/cdi-operator
+build-operator: build
 build-importer: WHAT = cmd/cdi-importer
 build-importer: build
 build-apiserver: WHAT = cmd/cdi-apiserver
@@ -86,6 +88,8 @@ docker: build
 
 docker-controller: WHAT = cmd/cdi-controller
 docker-controller: docker
+docker-operator: WHAT = cmd/cdi-operator
+docker-operator: docker
 docker-importer: WHAT = cmd/cdi-importer
 docker-importer: docker
 docker-cloner: WHAT = cmd/cdi-cloner
@@ -109,6 +113,8 @@ push: docker
 
 push-controller: WHAT = cmd/cdi-controller
 push-controller: push
+push-operator: WHAT = cmd/cdi-operator
+push-operator: push
 push-importer: WHAT = cmd/cdi-importer
 push-importer: push
 push-cloner: WHAT = cdm/cdi-cloner
